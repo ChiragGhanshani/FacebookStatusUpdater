@@ -2,9 +2,13 @@
 
 import sys
 import mechanize
+import re
+import HTMLParser
 from BeautifulSoup import BeautifulSoup
 
 browser = mechanize.Browser()
+h = HTMLParser.HTMLParser()
+
 browser.set_handle_robots(False)
 
 browser.open("https://m.facebook.com")
@@ -18,7 +22,10 @@ browser.submit()
 x = 0
 
 while x != 3:
-	input = raw_input("Please select an option:\n\tTo update your status enter 1\n\tTo view your friends' statuses enter 2\n\tTo quit this script enter 3\n")
+	input = raw_input('''Please select an option:
+	To update your status enter 1
+	To view your friends' statuses enter 2
+	To quit this script enter 3\n''')
 	x = int(input)
 	if x == 1:
 		status = raw_input('Please enter the status you would like to post.\n')
@@ -29,12 +36,12 @@ while x != 3:
 	elif x == 2:
 		page = browser.open('https://m.facebook.com')
 		soup = BeautifulSoup(page.read())
-		list = soup.findAll('div', {'class':'ca cb cu'})
+		list = soup.findAll('div', {'class': re.compile('^c[abu]') })
 		for l in list:
-			a = l.find('div', {'class':'cx', 'data-sigil':'mfeed_pivots_message feed-story-highlight-candidate'})
+			a = l.find('div', {'data-sigil':'mfeed_pivots_message feed-story-highlight-candidate'})
 			if not a is None:
-				print l.find('a', text=True)
-				print a.find('span', text=True)
+				print h.unescape(l.find('a', text=True))
+				print h.unescape(a.find('span', text=True))
 				print '\n'
 	elif x != 3:
 		print 'invalid input'
