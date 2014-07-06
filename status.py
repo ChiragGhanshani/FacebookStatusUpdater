@@ -21,7 +21,7 @@ while x != 3:
 	input = raw_input("Please select an option:\n\tTo update your status enter 1\n\tTo view your friends' statuses enter 2\n\tTo quit this script enter 3\n")
 	x = int(input)
 	if x == 1:
-		status = raw_input('Please enter the status you would like to post.')
+		status = raw_input('Please enter the status you would like to post.\n')
 		browser._factory.is_html = True
 		browser.select_form(nr=1)
 		browser.form['status'] = status
