@@ -39,7 +39,7 @@ while x != 3:
 		list = soup.findAll('div', {'class': re.compile('^c[abu]') })
 		for l in list:
 			a = l.find('div', {'data-sigil':'mfeed_pivots_message feed-story-highlight-candidate'})
-			if not a is None:
+			if a:
 				print h.unescape(l.find('a', text=True))
 				print h.unescape(a.find('span', text=True))
 				print '\n'
