@@ -38,7 +38,7 @@ while x != 3:
 	elif x == 2:
 		page = browser.open(FB_URL)
 		soup = BeautifulSoup(page.read())
-		list = soup.findAll('div', {'class': re.compile('^c[abu]') })
+		list = soup.findAll('div', {'class': re.compile('c[abu]') })
 		for l in list:
 			a = l.find('div', {'data-sigil':'mfeed_pivots_message feed-story-highlight-candidate'})
 			if a:
