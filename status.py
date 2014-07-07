@@ -1,10 +1,11 @@
-#!/usr/bin/env python
-
 import sys
 import mechanize
+<<<<<<< HEAD
 import re
 import HTMLParser
 from BeautifulSoup import BeautifulSoup
+=======
+>>>>>>> parent of df311a9... added menu and status viewing option
 
 FB_URL = "https://m.facebook.com"
 
@@ -21,6 +22,7 @@ browser.form['email'] = sys.argv[1]
 browser.form['pass'] = sys.argv[2]
 browser.submit()
 
+<<<<<<< HEAD
 x = 0
 
 while x != 3:
@@ -47,3 +49,9 @@ while x != 3:
 				print '\n'
 	elif x != 3:
 		print 'invalid input'
+=======
+browser._factory.is_html = True
+browser.select_form(nr=1)
+browser.form['status'] = sys.argv[3]
+browser.submit()
+>>>>>>> parent of df311a9... added menu and status viewing option
