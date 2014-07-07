@@ -6,12 +6,14 @@ import re
 import HTMLParser
 from BeautifulSoup import BeautifulSoup
 
+FB_URL = "https://m.facebook.com"
+
 browser = mechanize.Browser()
 h = HTMLParser.HTMLParser()
 
 browser.set_handle_robots(False)
 
-browser.open("https://m.facebook.com")
+browser.open(FB_URL)
 browser._factory.is_html = True
 browser.select_form(nr=0)
 
@@ -34,7 +36,7 @@ while x != 3:
 		browser.form['status'] = status
 		browser.submit()
 	elif x == 2:
-		page = browser.open('https://m.facebook.com')
+		page = browser.open(FB_URL)
 		soup = BeautifulSoup(page.read())
 		list = soup.findAll('div', {'class': re.compile('^c[abu]') })
 		for l in list:
