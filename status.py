@@ -44,9 +44,12 @@ while x != 3:
 		for l in list:
 			a = l.find('div', {'data-sigil':'mfeed_pivots_message feed-story-highlight-candidate'})
 			if a:
-				print h.unescape(l.find('a', text=True))
-				print h.unescape(a.find('span', text=True))
-				print '\n'
+				name = l.find('a', text=True)
+				status = a.find('span', text=True)
+				if name and status:
+					print h.unescape(name)
+					print h.unescape(status)
+					print '\n'
 	elif x != 3:
 		print 'invalid input'
 =======
